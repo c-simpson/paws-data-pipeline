@@ -15,12 +15,16 @@ RUN pip install --no-cache-dir -r /requirements.txt
 COPY . .
 
 RUN mkdir /app/static \
-          /app/static/uploads \
-          /app/static/uploads/current \
-          /app/static/output \
-          /app/static/output/reports \
-          /app/static/logs \
-          /app/static/zipped
+    /app/static/uploads \
+    /app/static/uploads/current \
+    /app/static/output \
+    /app/static/output/reports \
+    /app/static/logs \
+    /app/static/zipped \
+    /app/static/raw_data \
+    /app/static/raw_data/current
+
+RUN echo '{}' >  /app/static/logs/last_execution.json
 
 RUN chmod -R 777 /app/static
 
