@@ -24,17 +24,19 @@ spec:
         io.kompose.service: client
     spec:
       containers:
-      - env:
-        - name: CHOKIDAR_USEPOLLING
-          value: "true"
-        image: client
-        imagePullPolicy: ""
-        name: paws-compose-client
-        ports:
-        - containerPort: 3000
-        resources: {}
-        stdin: true
+        - env:
+            - name: CHOKIDAR_USEPOLLING
+              value: "true"
+          image: crisdockerx/paws_dp:src-client-latest
+          imagePullPolicy: ""
+          name: paws-compose-client
+          ports:
+            - containerPort: 3000
+          resources: {}
+          stdin: true
       restartPolicy: Always
       serviceAccountName: ""
       volumes: null
+      imagePullSecrets:
+        - name: regcred
 status: {}

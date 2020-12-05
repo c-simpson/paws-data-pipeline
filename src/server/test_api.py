@@ -14,7 +14,10 @@ import pytest, socket, requests
 # These codes are represented by the pytest.ExitCode enum
 
 
-SERVER_URL = "http://server:5000"
+DB_SERVER_NAME = "paws-compose-db"
+API_SERVER_NAME = "server"
+API_SERVER_URL = "http://server:5000"
+FRONT_END_SERVER_NAME = "client"
 
 ###  DNS lookup tests
 
@@ -27,26 +30,27 @@ def test_bad_dns():
 # Do we get IPs for good names?
 def test_db_dns():
     assert (
-        len(socket.getaddrinfo("db", "5000")) > 0
+        len(socket.getaddrinfo(DB_SERVER_NAME, "5000")) > 0
     )  # getaddrinfo works for IPv4 and v6
 
 
 def test_server_dns():
-    assert len(socket.getaddrinfo("server", "5000")) > 0
+    assert len(socket.getaddrinfo(API_SERVER_NAME, "5000")) > 0
 
 
 def test_client_dns():
-    assert len(socket.getaddrinfo("client", "5000")) > 0
+    assert len(socket.getaddrinfo(FRONT_END_SERVER_NAME, "5000")) > 0
 
 
 # Simple API tests
 
+
 def test_currentFiles():
-    response = requests.get(SERVER_URL + "/api/listCurrentFiles")
+    response = requests.get(API_SERVER_URL + "/api/listCurrentFiles")
     assert response.status_code == 200
 
 
 def test_statistics():
-    response = requests.get(SERVER_URL + "/api/statistics")
+    response = requests.get(API_SERVER_URL + "/api/statistics")
     assert response.status_code == 200
 

@@ -25,22 +25,24 @@ spec:
         io.kompose.service: server
     spec:
       containers:
-      - env:
-        - name: FLASK_ENV
-          value: development
-        image: server
-        imagePullPolicy: ""
-        name: paws-compose-server
-        ports:
-        - containerPort: 5000
-        resources: {}
-        volumeMounts:
-        - mountPath: /app/static/raw_data
-          name: src-archive
+        - env:
+            - name: FLASK_ENV
+              value: development
+          image: crisdockerx/paws_dp:src-server201201
+          imagePullPolicy: ""
+          name: paws-compose-server
+          ports:
+            - containerPort: 5000
+          resources: {}
+          volumeMounts:
+            - mountPath: /app/static/raw_data
+              name: src-archive
       restartPolicy: Always
       serviceAccountName: ""
+      imagePullSecrets:
+        - name: regcred
       volumes:
-      - name: src-archive
-        persistentVolumeClaim:
-          claimName: src-archive
+        - name: src-archive
+          persistentVolumeClaim:
+            claimName: src-archive
 status: {}

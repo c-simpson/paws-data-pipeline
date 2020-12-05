@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pdp-client
+spec:
+  containers:
+    - name: pdp-client-container
+      image: crisdockerx/paws_dp:src-client201201
+  imagePullSecrets:
+    - name: regcred
