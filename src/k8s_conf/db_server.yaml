@@ -49,7 +49,7 @@ spec:
         - env:
             - name: POSTGRES_PASSWORD
               value: thispasswordisverysecure
-          image: postgres:11.3-alpine
+          image: localhost:5000/postgres:11.3-alpine
           imagePullPolicy: ""
           name: paws-compose-db
           ports:

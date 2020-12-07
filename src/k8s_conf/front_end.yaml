@@ -48,7 +48,7 @@ spec:
         - env:
             - name: CHOKIDAR_USEPOLLING
               value: "true"
-          image: crisdockerx/paws_dp:src-client-latest
+          image: localhost:5000/src-client:latest
           imagePullPolicy: ""
           name: paws-compose-client
           ports:
